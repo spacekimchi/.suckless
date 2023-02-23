@@ -8,7 +8,7 @@ PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 
 X11INC = /usr/include/X11
-X11LIB = /usr/lib64/X11
+X11LIB = /usr/lib/X11
 
 # includes and libs
 INCS = -I. -I/usr/include -I${X11INC}

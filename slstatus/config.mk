@@ -8,7 +8,7 @@ PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 
 X11INC = /usr/include/X11
-X11LIB = /usr/lib64/X11
+X11LIB = /usr/lib/X11
 
 # flags
 CPPFLAGS = -I$(X11INC) -D_DEFAULT_SOURCE

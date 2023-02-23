@@ -14,10 +14,11 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+static const char col_blazeoj[]     = "#FF8200";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_blazeoj  },
 };
 
 /* tagging */
@@ -60,14 +61,24 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *slockcmd[] = { "slock", NULL };
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+
+/* audio keys if using ALSA */
+static const char *upvol[] = { "/bin/amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
+static const char *downvol[] = { "/bin/amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+static const char *mutevol[] = { "/bin/amixer", "-q", "set", "Master", "toggle", NULL };
+
+/* screenshot if using 'flameshot' */
+static const char *screenshot[] = { "flameshot", "gui", "-c", "-p", "/home/jhg/Pictures", NULL };
+
 /*
+ * Audio keys if using PulseAudio
+ * static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+ * static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+ * static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
  *
+ * Backlight control keys
  * static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
  * static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
- *
  */
 
 /* Add to keys[] array. With 0 as modifier, you are able to use the keys directly. */
@@ -76,6 +87,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Escape, 		 spawn,          {.v = slockcmd } },
+	{ 0, 							XK_Print,  spawn,		   {.v = screenshot } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
