@@ -91,8 +91,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
@@ -115,9 +115,16 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+    /*
+     * for some reason these arent working anymore and I don't know why.
+     * I changed locale to latam and changed back to us and they stopped working.
+    */
 	{ 0,                            XF86XK_AudioLowerVolume,  spawn,  {.v = downvol } },
 	{ 0,                            XF86XK_AudioRaiseVolume,  spawn,  {.v = upvol   } },
 	{ 0,                            XF86XK_AudioMute,  spawn,    {.v = mutevol } },
+	{ MODKEY,                       XK_a,       spawn,  {.v = downvol } },
+	{ MODKEY,                       XK_s,       spawn,  {.v = upvol   } },
+	{ MODKEY,                       XK_d,       spawn,    {.v = mutevol } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
